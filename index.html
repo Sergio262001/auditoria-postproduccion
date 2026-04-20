@@ -150,7 +150,7 @@
                 <canvas id="chartOrganicVolumen" style="max-height: 250px;"></canvas>
             </div>
             <div class="chart-card">
-                <h2>Riesgo Estructural: Fallas por Zona (CSS)</h2>
+                <h2>Distribución Arquitectónica de Ajustes</h2>
                 <canvas id="chartZonas"></canvas>
             </div>
             <div class="chart-card">
@@ -256,13 +256,21 @@
             options: { indexAxis: 'y', plugins: { stacked: true }, scales: { x: { stacked: true }, y: { stacked: true } } }
         });
 
+        // --- GRÁFICA MEJORADA: Zonas (Doughnut, colores institucionales y textos claros) ---
         new Chart(document.getElementById('chartZonas').getContext('2d'), {
-            type: 'bar',
+            type: 'doughnut',
             data: {
-                labels: ["Zona Body / Contenido Principal", "TODA LA PÁGINA"],
-                datasets: [{ label: 'Errores', data: [59, 44], backgroundColor: '#f0ad4e' }]
+                labels: ["Contenido Específico (Body)", "Estructura Global / Plantilla"],
+                datasets: [{
+                    data: [59, 44],
+                    backgroundColor: ['#17a2b8', '#6c757d'] // Azul cyan y gris neutro
+                }]
             },
-            options: { indexAxis: 'y' }
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
         });
 
         new Chart(document.getElementById('chartSubsitios').getContext('2d'), {
